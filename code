@@ -1,0 +1,33 @@
+//code used for Microsoft Makecode
+
+
+let value = 0
+light.graph(pins.A5.analogRead())
+pins.A0.digitalWrite(true)
+pins.A1.digitalWrite(true)
+pins.A2.digitalWrite(true)
+forever(function () {
+    if (input.buttonA.isPressed() && value == 0) {
+        value = 1
+    }
+    if (value == 1) {
+        light.showRing(
+        "red red red red red red red red red red"
+        )
+    }
+    if (input.buttonA.isPressed() && value == 1) {
+        value = 2
+    }
+    if (value == 2) {
+        light.showAnimation(light.rainbowAnimation, 500)
+    }
+    if (input.buttonB.isPressed()) {
+        value = 0
+    }
+    if (value == 0) {
+        light.graph(pins.A5.analogRead())
+        pins.A0.digitalWrite(true)
+        pins.A1.digitalWrite(true)
+        pins.A2.digitalWrite(true)
+    }
+})
